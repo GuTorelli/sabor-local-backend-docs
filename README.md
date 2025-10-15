@@ -21,7 +21,7 @@ A base de dados foi modelada para garantir a integridade e o relacionamento entr
 
 * **`verificacao_cadastro`**: Tabela temporária que armazena o `random_number` (código de verificação) enviado ao usuário via SendGrid. Este registro é associado ao `user_id` e apagado após a autenticação bem-sucedida, quando o status `is_active` do usuário se torna `true`.
 
-* **`dados_adicionais`**: Armazena os múltiplos endereços de um usuário (nome do local, CEP, rua, etc.), sempre referenciando o `user_id` correspondente. O cadastro bem-sucedido de um endereço atualiza o status `profile_complete` do usuário para `true`.
+* **`dados_adicionais`**: Armazena os múltiplos endereços de um usuário (nome do local, CEP, rua, bairro, número.), sempre referenciando o `user_id` correspondente. O cadastro bem-sucedido de um endereço atualiza o status `profile_complete` do usuário para `true`.
 
 ### Diagrama de Relacionamento
 
@@ -38,7 +38,7 @@ A base de dados foi modelada para garantir a integridade e o relacionamento entr
 Os endpoints foram projetados para seguir uma sequência lógica que acompanha a jornada do usuário dentro do aplicativo:
 
 1.  **Cadastro Inicial (`POST /verificacao_cadastro`):** O usuário preenche seus dados. A API cria um pré-cadastro (`is_active = false`) e envia um e-mail de verificação.
-2.  **Ativação da Conta (`POST /finalizar_cadastro`):** O front-end envia o código inserido pelo usuário para validação. Após o código ser validado, este endpoint é chamado para ativar a conta do usuário (`is_active = true`) e limpar os dados de verificação.
+2.  **Ativação da Conta (`POST /finalizar_cadastro`):** O front-end envia o código inserido pelo usuário para validação. A API valida O código e a conta do usuário é ativada (`is_active = true`) e limpa os dados de verificação.
 3.  **Login (`POST /auth/login`):** Com a conta ativa, o usuário pode fazer login para obter um `authToken`, que é necessário para todas as ações futuras.
 4.  **Ações Autenticadas (Ex: `POST /dados_adicionais`):** Uma vez logado, o usuário pode realizar ações protegidas, como cadastrar seus endereços. Em breve, o usuário conseguirá visualizar seus endereços salvos.
 
