@@ -21,7 +21,7 @@ A base de dados foi modelada para garantir a integridade e o relacionamento entr
 
 * **`verificacao_cadastro`**: Tabela temporária que armazena o `random_number` (código de verificação) enviado ao usuário via SendGrid. Este registro é associado ao `user_id` e apagado após a autenticação bem-sucedida, quando o status `is_active` do usuário se torna `true`.
 
-* **`dados_adicionais`**: Armazena os múltiplos endereços de um usuário (nome do local, CEP, rua, bairro, número.), sempre referenciando o `user_id` correspondente. O cadastro bem-sucedido de um endereço atualiza o status `profile_complete` do usuário para `true`.
+* **`dados_adicionais`**: Armazena os múltiplos endereços de um usuário (nome do local, CEP, rua, bairro, número), sempre referenciando o `user_id` correspondente. O cadastro bem-sucedido de um endereço atualiza o status `profile_complete` do usuário para `true`.
 
 ### Diagrama de Relacionamento
 
