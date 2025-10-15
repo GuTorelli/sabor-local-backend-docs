@@ -23,16 +23,6 @@ A base de dados foi modelada para garantir a integridade e o relacionamento entr
 
 * **`dados_adicionais`**: Armazena os múltiplos endereços de um usuário (nome do local, CEP, rua, bairro, número), sempre referenciando o `user_id` correspondente. O cadastro bem-sucedido de um endereço atualiza o status `profile_complete` do usuário para `true`.
 
-### Diagrama de Relacionamento
-
-[ Tabela: user ]
-|
-|---( 1 para 1 )---> [ Tabela: verificacao_cadastro ]
-|                     (liga pelo user_id)
-|
-`---( 1 para Muitos )--> [ Tabela: dados_adicionais ]
-(liga pelo user_id)
-
 ## 3. Fluxo de API (Jornada do Usuário)
 
 Os endpoints foram projetados para seguir uma sequência lógica que acompanha a jornada do usuário dentro do aplicativo:
